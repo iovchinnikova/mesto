@@ -1,0 +1,18 @@
+.popup__button-close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background-image: url("../../../images/Close Icon.png");
+  border: none;
+  background-position: center;
+  background-color: black;
+  width: 40px;
+  height: 40px;
+}
+
+.popup__button-close:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: rotate(45deg);
+  opacity: 0.5;
+  cursor: pointer;
+}

@@ -1,0 +1,8 @@
+.element__item {
+  width: 282px;
+  height: 282px;
+  /*object-fit: cover;*/
+  /*border-top-right-radius: 5px;*/
+  /*border-top-left-radius: 5px;*/
+  /*grid-area: image;*/
+}

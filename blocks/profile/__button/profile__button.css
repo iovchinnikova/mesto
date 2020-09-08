@@ -1,0 +1,10 @@
+.profile__button {
+  padding-left: 242px;
+}
+
+@media screen and (max-width: 1280px) and (min-width: 320px) {
+  .profile__button {
+    padding: 0;
+    padding-top: 36px;
+  }
+}

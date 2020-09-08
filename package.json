@@ -1,0 +1,27 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.html",
+  "directories": {},
+  "scripts": {
+    "Start development": "gulp 'Start development'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iovchinnikova/mesto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iovchinnikova/mesto/issues"
+  },
+  "homepage": "https://github.com/iovchinnikova/mesto",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "normalize.css": "latest"
+  }
+}

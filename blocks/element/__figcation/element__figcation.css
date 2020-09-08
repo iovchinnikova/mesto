@@ -1,0 +1,15 @@
+.element__figcation {
+  display: flex;
+  background: white;
+  width: 282px;
+  height: 79px;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  /*grid-area: title;*/
+}
