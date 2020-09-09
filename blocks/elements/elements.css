@@ -1,5 +1,5 @@
 .elements {
-  max-width: 882px;
+  width: 882px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
@@ -9,7 +9,7 @@
   padding-left: 0;
 }
 
-@media screen and (min-width: 300px) {
+@media screen and (max-width: 320px) {
   .elements {
     width: 282px;
     height: 2266px;

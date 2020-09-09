@@ -5,6 +5,16 @@
   line-height: 1.2;
   max-width: 330px;
   padding-top: 34px;
-  padding-bottom: 54px;
+  padding-bottom: 24px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 320px) {
+  .popup__title {
+    font-size: 18px;
+    line-height: 1.2;
+    max-width: 238px;
+    padding-top: 25px;
+    padding-bottom: 35px;
+  }
 }
