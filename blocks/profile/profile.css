@@ -3,8 +3,6 @@
 @import url('__button/profile__button.css');
 @import url('__edit-button/profile__edit-button.css');
 @import url('__add-button/profile__add-button.css');
-@import url('__info/_title/profile__info_title.css');
-@import url('__info/_subtitle/profile__info_subtitle.css');
 
 .profile {
   padding-top: 40px;
@@ -16,7 +14,7 @@
   align-items: center;
 }
 
-@media screen and (max-width: 1280px) and (min-width: 320px) {
+@media screen and (min-width: 320px) {
   .profile {
     width: 282px;
     height: 286px;

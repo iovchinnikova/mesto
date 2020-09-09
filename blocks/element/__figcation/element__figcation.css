@@ -1,3 +1,6 @@
+@import url('_laik/element__figcation_laik.css');
+@import url('_title/element__figcation_title.css');
+
 .element__figcation {
   display: flex;
   background: white;
@@ -10,6 +13,4 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-
-  /*grid-area: title;*/
 }

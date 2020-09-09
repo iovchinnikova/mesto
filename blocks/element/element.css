@@ -1,7 +1,5 @@
 @import url('__item/element__item.css');
 @import url('__figcation/element__figcation.css');
-@import url('__figcation/_title/element__figcation_title.css');
-@import url('__figcation/_laik/element__figcation_laik.css');
 
 .element {
   display: flex;
