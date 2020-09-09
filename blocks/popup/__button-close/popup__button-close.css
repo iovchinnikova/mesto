@@ -8,13 +8,12 @@
   background-color: black;
   width: 40px;
   height: 40px;
+  cursor: pointer;
 }
 
 .popup__button-close:hover {
-  background: rgba(255, 255, 255, 0.6);
-  transform: rotate(45deg);
   opacity: 0.5;
-  cursor: pointer;
+  /*border: 0;*/
 }
 
 @media screen and (max-width: 320px) {
