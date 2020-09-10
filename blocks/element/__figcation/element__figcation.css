@@ -4,8 +4,8 @@
 .element__figcation {
   display: flex;
   background: white;
-  width: 282px;
-  height: 79px;
+  max-width: 282px;
+  min-height: 79px;
   align-items: center;
   justify-content: space-around;
   border-bottom-right-radius: 5px;

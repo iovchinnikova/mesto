@@ -1,17 +1,20 @@
 .elements {
-  width: 882px;
+  max-width: 882px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   /*grid-template-rows: repeat(auto-fit, minmax(361px, 1fr));*/
   row-gap: 20px;
   column-gap: 16px;
-  padding-left: 0;
+  padding: 0;
+  /*overflow:hidden;*/
+  /*overflow-x:hidden;*/
+  /*overflow-y:hidden;*/
 }
 
 @media screen and (max-width: 320px) {
   .elements {
-    width: 282px;
-    height: 2266px;
+    max-width: 282px;
+    max-height: 2284px;
   }
 }

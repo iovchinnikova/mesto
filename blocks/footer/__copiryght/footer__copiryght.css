@@ -7,9 +7,6 @@
 
 @media screen and (max-width: 320px) {
   .footer__copiryght {
-    width: 282px;
     font-size: 14px;
-    padding-top: 36px;
-    padding-bottom: 48px;
   }
 }

@@ -7,16 +7,15 @@
 .profile {
   padding-top: 40px;
   padding-bottom: 51px;
-  width: 882px;
+  max-width: 882px;
   margin: 0 auto;
   display: flex;
   align-items: center;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 780px) {
   .profile {
-    width: 282px;
-    height: 286px;
+    max-width: 750px;
     padding-top: 42px;
     padding-bottom: 36px;
     flex-direction: column;
