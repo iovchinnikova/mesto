@@ -1,0 +1,14 @@
+.element__figcation-laik {
+  width: 21px;
+  height: 18px;
+  padding-right: 30px;
+  border: none;
+  background: url("../../../images/Like.svg") no-repeat;
+}
+
+.element__figcation-laik:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+

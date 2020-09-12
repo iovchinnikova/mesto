@@ -4,12 +4,12 @@
   padding-top: 66px;
   padding-bottom: 60px;
   margin: 0 auto;
-  max-width: 882px;
+  width: 70%;
 }
 
 @media screen and (max-width: 320px) {
   .footer {
-    max-width: 282px;
+    width: 90%;
     padding-top: 48px;
     padding-bottom: 36px;
   }

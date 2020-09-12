@@ -2,16 +2,14 @@
 
 .header {
   padding-top: 45px;
-  max-width: 882px;
+  width: 70%;
   margin: 0 auto;
   min-height: 74px;
-  position: relative;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
 @media screen and (max-width: 320px) {
   .header {
-    max-width: 324px;
     min-height: 56px;
     padding-top: 28px;
   }

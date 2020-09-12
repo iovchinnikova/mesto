@@ -1,6 +1,3 @@
-@import url('_name/popup__input_name.css');
-@import url('_description/popup__input_description.css');
-
 .popup__input {
   min-width: 358px;
   margin: 0 auto;

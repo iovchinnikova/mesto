@@ -1,11 +1,6 @@
-@import url('_laik/element__figcation_laik.css');
-@import url('_title/element__figcation_title.css');
-
 .element__figcation {
   display: flex;
   background: white;
-  max-width: 282px;
-  min-height: 79px;
   align-items: center;
   justify-content: space-around;
   border-bottom-right-radius: 5px;
