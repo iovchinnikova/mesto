@@ -1,13 +1,11 @@
 .profile__info {
   padding-left: 23px;
   max-width: 350px;
-  position: relative;
 }
 
 @media screen and (max-width: 320px) {
   .profile__info {
     max-width: 280px;
-    /*max-height: 66px;*/
     padding: 0;
   }
 }
