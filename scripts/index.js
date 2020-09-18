@@ -1,11 +1,3 @@
-const popup = document.querySelector('.popup');
-const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
-const popupCloseButton = document.querySelector('.popup__button-close');
-const popupForm = document.querySelector('.popup__form');
-const profileName = document.querySelector('.profile__info-title');
-const profileDescription = document.querySelector('.profile__info-subtitle');
-const popupInputName = document.querySelector('.popup__input_name');
-const popupInputDescription = document.querySelector('.popup__input_description');
 const initialCards = [
   {
     name: 'Архыз',
@@ -32,33 +24,50 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const popupItem = document.querySelector('.popup__item');
+const popupProfile = document.querySelector('.popup__profile')
+const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
+const buttonClosePopupProfile = document.querySelector('.popup__button-close_profile');
+const popupForm = document.querySelector('.popup__form');
+const profileName = document.querySelector('.profile__info-title');
+const profileDescription = document.querySelector('.profile__info-subtitle');
+const popupInputName = document.querySelector('.popup__input_name');
+const popupInputDescription = document.querySelector('.popup__input_description');
+
+const popupAddPhoto = document.querySelector('.popup__photo');
+const buttonOpenPopupPhoto = document.querySelector('.profile__add-button');
+const inputPhotoPlace  = document.querySelector('.popup__input_place');
+const inputPhotoPlaceLink  = document.querySelector('.popup__input_place-link');
+const closeButtonPopupPhoto = document.querySelector('.popup__button-close_photo');
+
+popupInputName.value = profileName.textContent;
+popupInputDescription.value = profileDescription.textContent;
+
+// const elementFigcationTitle = document.querySelector('.element__figcation-title');
+// const elementItem = document.querySelector('.element__item');
 
 
-const buttonOpenPopupItem = document.querySelector('.profile__add-button');
-const elementFigcationTitle = document.querySelector('.element__figcation-title');
-const elementItem = document.querySelector('.element__item');
-const popupInputItem  = document.querySelector('.popup__input_item');
-const popupInputLink  = document.querySelector('.popup__input_link');
-
-
-
-
-function openPopupItem() {
-  // popupInputItem.value = initialCards[name].textContent;
-  // popupInputLink.value = initialCards[link].textContent;
-  popupItem.classList.add('popup__item_opened');
+function handleClickOpenPopup(modal, element) {
+function openPopup(){
+  modal.classList.add('popup_opened')
+}
+  element.addEventListener('click', openPopup)
 }
 
-function openPopup() {
-  popupInputName.value = profileName.textContent;
-  popupInputDescription.value = profileDescription.textContent;
-  popup.classList.add('popup_opened');
+function closePopup(modal){
+  modal.classList.remove('popup_opened');
 }
 
-function closePopup() {
-  popup.classList.remove('popup_opened');
+function handleClickClosePopup(modal, element) {
+  function handleClosePopup(){
+    closePopup(modal);
+  }
+  element.addEventListener('click', handleClosePopup);
 }
+handleClickClosePopup(popupAddPhoto, closeButtonPopupPhoto);
+handleClickClosePopup(popupProfile, buttonClosePopupProfile);
+handleClickOpenPopup(popupAddPhoto, buttonOpenPopupPhoto);
+handleClickOpenPopup(popupProfile, buttonOpenPopupProfile);
+
 
 function onSubmitPopupForm(event) {
   event.preventDefault();
@@ -66,31 +75,31 @@ function onSubmitPopupForm(event) {
   profileName.textContent = popupInputName.value;
   profileDescription.textContent = popupInputDescription.value;
 
-  closePopup();
+  closePopup(popupProfile);
 }
 
-buttonOpenPopupProfile.addEventListener('click', openPopup);
-popupCloseButton.addEventListener('click', closePopup);
+
+
 popupForm.addEventListener('submit', onSubmitPopupForm);
-buttonOpenPopupItem.addEventListener('click', openPopupItem);
+// buttonOpenPopupItem.addEventListener('click', openPopupItem);
 
-function addItem(nameValue, linkValue) {
-  const newItem = document.createElement('div');
-  newItem.classList.add('element');
-
-  const nameElement = document.createElement('h2');
-  nameElement.classList.add('element__figcation-title');
-  nameElement.textContent = nameValue;
-
-  const linkElement = document.createElement('img');
-  linkElement.classList.add('element__item');
-  linkElement.textContent = linkValue;
-
-  // const likeButtonElement = document.createElement('button');
-  // likeButtonElement.classList.add('song__like');
-
-  addItem.append(nameElement, linkElement, likeButtonElement);
-  // songsContainer.append(trackContainer);
-}
-
+// function addItem(nameValue, linkValue) {
+//   const newItem = document.createElement('div');
+//   newItem.classList.add('element');
 //
+//   const nameElement = document.createElement('h2');
+//   nameElement.classList.add('element__figcation-title');
+//   nameElement.textContent = nameValue;
+//
+//   const linkElement = document.createElement('img');
+//   linkElement.classList.add('element__item');
+//   linkElement.textContent = linkValue;
+//
+//   // const likeButtonElement = document.createElement('button');
+//   // likeButtonElement.classList.add('song__like');
+//
+//   addItem.append(nameElement, linkElement, likeButtonElement);
+//   // songsContainer.append(trackContainer);
+// }
+//
+// //
