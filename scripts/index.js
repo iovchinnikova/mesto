@@ -35,16 +35,13 @@ const popupInputDescription = document.querySelector('.popup__input_description'
 
 const popupAddPhoto = document.querySelector('.popup__photo');
 const buttonOpenPopupPhoto = document.querySelector('.profile__add-button');
-const inputPhotoPlace  = document.querySelector('.popup__input_place');
-const inputPhotoPlaceLink  = document.querySelector('.popup__input_place-link');
 const closeButtonPopupPhoto = document.querySelector('.popup__button-close_photo');
+const inputPhotoPlace = document.querySelector('.popup__input_place');
+const inputPhotoPlaceLink = document.querySelector('.popup__input_place-link');
+
 
 popupInputName.value = profileName.textContent;
 popupInputDescription.value = profileDescription.textContent;
-
-// const elementFigcationTitle = document.querySelector('.element__figcation-title');
-// const elementItem = document.querySelector('.element__item');
-
 
 function handleClickOpenPopup(modal, element) {
 function openPopup(){
