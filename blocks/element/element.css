@@ -11,3 +11,7 @@
   width: 282px;
   position: relative;
 }
+
+.element__template {
+  display: none;
+}
