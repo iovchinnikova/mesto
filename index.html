@@ -44,10 +44,10 @@
 <section class="elements">
   <div class="element element__template">
     <img src="#" alt="" class="element__item">
-    <button class="element__delete" type="button"></button>
+    <button type="reset" class="element__delete" ></button>
     <div class="element__figcation">
       <h2 class="element__figcation-title"></h2>
-      <button class="element__figcation-laik" type="button"></button>
+      <button type="button" class="element__figcation-like" ></button>
     </div>
   </div>
 </section>
@@ -55,7 +55,7 @@
 
 <section class="popup popup__profile">
   <div class="popup__container">
-    <button type="button" class="popup__button-close popup__button-close_profile"></button>
+    <button type="reset" class="popup__button-close popup__button-close_profile"></button>
     <h3 class="popup__title">Редактировать профиль</h3>
     <form class="popup__form popup__form_profile" method="get" name="myForm">
         <input name="Name" placeholder="ФИО путешественника" class="popup__input popup__input_name" value="" required>
@@ -66,7 +66,7 @@
 </section>
   <section class="popup popup__photo">
   <div class="popup__container">
-    <button type="button" class="popup__button-close popup__button-close_photo"></button>
+    <button type="reset" class="popup__button-close popup__button-close_photo"></button>
     <h3 class="popup__title">Новое место</h3>
     <form class="popup__form popup__form_add_card" method="get" name="myForm">
       <input name="Name" placeholder="Название" class="popup__input popup__input_place" value="ghjkl;" required>
@@ -74,9 +74,16 @@
       <button type="submit" class="popup__button-save">Создать</button>
     </form>
   </div>
+  </section>
+
+<section class="popup popup__images">
+  <div class="popup__container popup__container_image">
+    <button type="reset" class="popup__button-close popup__button-close_image"></button>
+    <img src="#" alt="" class="popup__image">
+    <h3 class="popup__figcation-title_image"></h3>
+  </div>
 
 </section>
-
 <footer class="footer">
   <p class="footer__copiryght">© 2020 Mesto Russia</p>
 </footer>

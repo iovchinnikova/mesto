@@ -1,0 +1,19 @@
+@import url('_active/element__figcation-like_active.css');
+
+.element__figcation-like {
+  width: 21px;
+  height: 19px;
+  padding-right: 30px;
+  border: none;
+  background: url("../../../images/Like.svg") center no-repeat;
+  transition: 0.3s;
+}
+
+.element__figcation-like:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+
+/*images/LikeBlack.svg*/
+/*../../../images/Like.svg*/

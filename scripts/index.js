@@ -41,6 +41,14 @@ const popupInputPlace = document.querySelector('.popup__input_place');
 const popupInputPlaceLink = document.querySelector('.popup__input_place-link');
 const elements = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.element__template');
+// const elementLike = document.querySelector('.element__figcation-like');
+
+const popupImage = document.querySelector('.popup__images');
+console.log('ghdtn');
+const buttonOpenPopupImage = document.querySelector('.element__item');
+console.log('привет');
+const buttonClosePopupImage = document.querySelector('.popup__button-close_image');
+
 
 popupInputName.value = profileName.textContent;
 popupInputDescription.value = profileDescription.textContent;
@@ -59,6 +67,10 @@ function addCard(name, link, v_nachalo) {
   newCardElement.querySelector('.element__figcation-title').textContent = name;
   element__item.setAttribute('src', link);
   element__item.setAttribute('alt', name);
+  newCardElement.querySelector('.element__figcation-like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('.element__figcation-like_active');
+  });
+
   newCardElement.querySelector('.element__delete').addEventListener('click', () => {
     newCardElement.remove();
   })
@@ -92,8 +104,10 @@ function handleClickClosePopup(modal, element) {
 
 handleClickClosePopup(popupAddPhoto, closeButtonPopupPhoto);
 handleClickClosePopup(popupProfile, buttonClosePopupProfile);
+handleClickClosePopup(popupImage, buttonClosePopupImage);
 handleClickOpenPopup(popupAddPhoto, buttonOpenPopupPhoto);
 handleClickOpenPopup(popupProfile, buttonOpenPopupProfile);
+handleClickOpenPopup(popupImage, buttonOpenPopupImage);
 
 
 function onSubmitPopupForm(event) {
@@ -120,25 +134,4 @@ function onSubmitPopupFormAddCard(event) {
 popupFormAddCard.addEventListener('submit', onSubmitPopupFormAddCard);
 
 
-// buttonOpenPopupItem.addEventListener('click', openPopupItem);
 
-// function addItem(nameValue, linkValue) {
-//   const newItem = document.createElement('div');
-//   newItem.classList.add('element');
-//
-//   const nameElement = document.createElement('h2');
-//   nameElement.classList.add('element__figcation-title');
-//   nameElement.textContent = nameValue;
-//
-//   const linkElement = document.createElement('img');
-//   linkElement.classList.add('element__item');
-//   linkElement.textContent = linkValue;
-//
-//   // const likeButtonElement = document.createElement('button');
-//   // likeButtonElement.classList.add('song__like');
-//
-//   addItem.append(nameElement, linkElement, likeButtonElement);
-//   // songsContainer.append(trackContainer);
-// }
-//
-// //
