@@ -1,8 +1,3 @@
 .element__figcation-like_active {
-  width: 21px;
-  height: 19px;
-  padding-right: 30px;
-  border: none;
   background: url("../../../../images/LikeBlack.svg") center no-repeat;
-  transition: 0.3s;
 }

@@ -32,7 +32,6 @@ const profileName = document.querySelector('.profile__info-title');
 const profileDescription = document.querySelector('.profile__info-subtitle');
 const popupInputName = document.querySelector('.popup__input_name');
 const popupInputDescription = document.querySelector('.popup__input_description');
-
 const popupAddPhoto = document.querySelector('.popup__photo');
 const buttonOpenPopupPhoto = document.querySelector('.profile__add-button');
 const closeButtonPopupPhoto = document.querySelector('.popup__button-close_photo');
@@ -41,13 +40,6 @@ const popupInputPlace = document.querySelector('.popup__input_place');
 const popupInputPlaceLink = document.querySelector('.popup__input_place-link');
 const elements = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.element__template');
-// const elementLike = document.querySelector('.element__figcation-like');
-
-const popupImage = document.querySelector('.popup__images');
-console.log('ghdtn');
-const buttonOpenPopupImage = document.querySelector('.element__item');
-console.log('привет');
-const buttonClosePopupImage = document.querySelector('.popup__button-close_image');
 
 
 popupInputName.value = profileName.textContent;
@@ -57,23 +49,40 @@ for (const initialCard of initialCards) {
   addCard(initialCard.name, initialCard.link,  false);
 }
 
-
 function addCard(name, link, v_nachalo) {
   const newCardElement = cardTemplate.cloneNode(true);
-  const element__item = newCardElement.querySelector('.element__item');
-
+  const elementPhoto = newCardElement.querySelector('.element__item');
+  const elementLike = newCardElement.querySelector('.element__figcation-like');
 
   newCardElement.classList.remove('element__template');
   newCardElement.querySelector('.element__figcation-title').textContent = name;
-  element__item.setAttribute('src', link);
-  element__item.setAttribute('alt', name);
-  newCardElement.querySelector('.element__figcation-like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('.element__figcation-like_active');
-  });
+  elementPhoto.setAttribute('src', link);
+  elementPhoto.setAttribute('alt', name);
 
   newCardElement.querySelector('.element__delete').addEventListener('click', () => {
     newCardElement.remove();
   })
+
+  elementLike.addEventListener('click', function (event) {
+    elementLike.classList.toggle('element__figcation-like_active');
+  });
+
+
+  const popupImages = document.querySelector('.popup__images');
+  const popupImage = document.querySelector('.popup__image');
+  const popupTitleImage = document.querySelector('.popup__title_image');
+  const buttonClosePopupImages = document.querySelector('.popup__button-close_image');
+
+  elementPhoto.addEventListener('click', handleOpenImagePopupClick)
+
+  function handleOpenImagePopupClick() {
+    popupImage.setAttribute('src', link);
+    popupTitleImage.textContent = name;
+
+    openPopup(popupImages);
+  }
+
+  handleClickClosePopup(popupImages, buttonClosePopupImages);
 
   if (v_nachalo) {
     elements.prepend(newCardElement);
@@ -82,12 +91,16 @@ function addCard(name, link, v_nachalo) {
   }
 }
 
+function openPopup(modal) {
+  modal.classList.add('popup_opened');
+}
+
 function handleClickOpenPopup(modal, element) {
-  function openPopup() {
-    modal.classList.add('popup_opened');
+  function handleOpenPopup() {
+    openPopup(modal);
   }
 
-  element.addEventListener('click', openPopup)
+  element.addEventListener('click', handleOpenPopup)
 }
 
 function closePopup(modal) {
@@ -104,10 +117,8 @@ function handleClickClosePopup(modal, element) {
 
 handleClickClosePopup(popupAddPhoto, closeButtonPopupPhoto);
 handleClickClosePopup(popupProfile, buttonClosePopupProfile);
-handleClickClosePopup(popupImage, buttonClosePopupImage);
 handleClickOpenPopup(popupAddPhoto, buttonOpenPopupPhoto);
 handleClickOpenPopup(popupProfile, buttonOpenPopupProfile);
-handleClickOpenPopup(popupImage, buttonOpenPopupImage);
 
 
 function onSubmitPopupForm(event) {
@@ -129,7 +140,6 @@ function onSubmitPopupFormAddCard(event) {
 
   closePopup(popupAddPhoto);
 }
-
 
 popupFormAddCard.addEventListener('submit', onSubmitPopupFormAddCard);
 
