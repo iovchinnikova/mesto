@@ -5,9 +5,9 @@
 @import url('__input/popup__input.css');
 @import url('__button-save/popup__button-save.css');
 @import url('_opened/popup_opened.css');
-@import url('__photo/popup__photo.css');
-/*@import url('__button-add/popup__button-add.css');*/
 @import url('__container/_image/popup__container_image.css');
+@import url('__image/popup__image.css');
+
 
 .popup {
   position: fixed;
@@ -18,5 +18,13 @@
   justify-content: center;
   align-items: center;
   display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s step-end, opacity 1s;
 }
 
+.popup:hover {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}

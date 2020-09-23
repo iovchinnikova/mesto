@@ -5,7 +5,6 @@
 @import url('__delete/element__delete.css');
 @import url('__figcation-like/_active/element__figcation-like_active.css');
 
-
 .element {
   display: flex;
   flex-direction: column;

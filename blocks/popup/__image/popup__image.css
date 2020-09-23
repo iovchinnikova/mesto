@@ -1,8 +1,4 @@
 .popup__image {
-  max-width:100%;
-  min-height: 100%;
-  /*display: inline-block;*/
-  /*background-size: contain;*/
-  overflow: inherit;
-
+  max-width:820px;
+  max-height: 540px;
 }

@@ -41,7 +41,6 @@ const popupInputPlaceLink = document.querySelector('.popup__input_place-link');
 const elements = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.element__template');
 
-
 popupInputName.value = profileName.textContent;
 popupInputDescription.value = profileDescription.textContent;
 
@@ -67,18 +66,16 @@ function addCard(name, link, v_nachalo) {
     elementLike.classList.toggle('element__figcation-like_active');
   });
 
-
   const popupImages = document.querySelector('.popup__images');
   const popupImage = document.querySelector('.popup__image');
   const popupTitleImage = document.querySelector('.popup__title_image');
   const buttonClosePopupImages = document.querySelector('.popup__button-close_image');
 
-  elementPhoto.addEventListener('click', handleOpenImagePopupClick)
+  elementPhoto.addEventListener('click', handleOpenImagePopupClick);
 
   function handleOpenImagePopupClick() {
     popupImage.setAttribute('src', link);
     popupTitleImage.textContent = name;
-
     openPopup(popupImages);
   }
 
@@ -99,7 +96,6 @@ function handleClickOpenPopup(modal, element) {
   function handleOpenPopup() {
     openPopup(modal);
   }
-
   element.addEventListener('click', handleOpenPopup)
 }
 
@@ -111,7 +107,6 @@ function handleClickClosePopup(modal, element) {
   function handleClosePopup() {
     closePopup(modal);
   }
-
   element.addEventListener('click', handleClosePopup);
 }
 
@@ -120,28 +115,18 @@ handleClickClosePopup(popupProfile, buttonClosePopupProfile);
 handleClickOpenPopup(popupAddPhoto, buttonOpenPopupPhoto);
 handleClickOpenPopup(popupProfile, buttonOpenPopupProfile);
 
-
 function onSubmitPopupForm(event) {
   event.preventDefault();
-
   profileName.textContent = popupInputName.value;
   profileDescription.textContent = popupInputDescription.value;
-
   closePopup(popupProfile);
 }
 
-
-popupFormProfile.addEventListener('submit', onSubmitPopupForm);
-
 function onSubmitPopupFormAddCard(event) {
   event.preventDefault();
-
   addCard(popupInputPlace.value, popupInputPlaceLink.value, true);
-
   closePopup(popupAddPhoto);
 }
 
 popupFormAddCard.addEventListener('submit', onSubmitPopupFormAddCard);
-
-
-
+popupFormProfile.addEventListener('submit', onSubmitPopupForm);
