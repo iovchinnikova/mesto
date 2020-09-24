@@ -63,7 +63,7 @@ function addCard(name, link, start) {
   elementPhoto.setAttribute('alt', name);
 
   newCardElement.querySelector('.element__delete').addEventListener('click', () => {
-    newCardElement.remove();
+     newCardElement.remove();
   })
 
   elementLike.addEventListener('click', function (event) {
