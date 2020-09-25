@@ -55,12 +55,18 @@ for (const initialCard of initialCards) {
 function createCard(name, link) {
   const newCardElement = cardTemplate.cloneNode(true);
   const elementPhoto = newCardElement.querySelector('.element__item');
-  const elementLike = newCardElement.querySelector('.element__figcation-like');
 
   newCardElement.classList.remove('element__template');
   newCardElement.querySelector('.element__figcation-title').textContent = name;
   elementPhoto.setAttribute('src', link);
   elementPhoto.setAttribute('alt', name);
+
+  return newCardElement;
+}
+
+function addCard(newCardElement, start) {
+  const elementPhoto = newCardElement.querySelector('.element__item');
+  const elementLike = newCardElement.querySelector('.element__figcation-like');
 
   newCardElement.querySelector('.element__delete').addEventListener('click', () => {
     newCardElement.remove();
@@ -73,18 +79,13 @@ function createCard(name, link) {
   elementPhoto.addEventListener('click', handleOpenImagePopupClick);
 
   function handleOpenImagePopupClick() {
-    popupImage.setAttribute('src', link);
-    popupTitleImage.textContent = name;
+    popupImage.setAttribute('src', elementPhoto.getAttribute('src'));
+    popupTitleImage.textContent = elementPhoto.getAttribute('alt');
     openPopup(imagePopup);
   }
 
   handleClickClosePopup(imagePopup, buttonClosePopupImages);
 
-
-  return newCardElement;
-}
-
-function addCard(newCardElement, start) {
   if (start) {
     elements.prepend(newCardElement);
   } else {
