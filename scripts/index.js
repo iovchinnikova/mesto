@@ -130,3 +130,20 @@ function onSubmitPopupFormAddCard(event) {
 
 popupFormAddCard.addEventListener('submit', onSubmitPopupFormAddCard);
 popupFormProfile.addEventListener('submit', onSubmitPopupForm);
+
+const popupForm = document.querySelector('.popup__form');
+const popupInput = popupForm.querySelector('.popup__input');
+const popupError = popupForm.querySelector('#${popupInput.id}-error');
+
+const showInputError = (popupFormElement, popupInputElement, errorMessage) => {
+  const errorElement = popupFormElement.querySelector(popupInputElement.id);
+  popupInputElement.classList.add('popup__input-type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__input-error_active');
+};
+
+const hideInputError = (popupFormElement, popupInputElement) => {
+  const errorElement = popupFormElement.querySelector(popupInputElement.id);
+  popupInputElement.classList.remove('popup__input-type_error');
+  errorElement.textContent = '';
+}
