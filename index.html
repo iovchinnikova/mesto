@@ -44,8 +44,8 @@
     <button type="reset" class="popup__button-close popup__button-close_profile"></button>
     <h3 class="popup__title">Редактировать профиль</h3>
     <form class="popup__form popup__form_profile" method="get" name="myForm" novalidate>
-        <input name="Name" placeholder="ФИО путешественника" class="popup__input popup__input_name" value="" minlength="2" maxlength="40" required><span class='popup__input-error' id='popup__input_name-error'></span>
-        <input name="Description" placeholder="Увлечения путешественника" class="popup__input popup__input_description" value="" minlength="2" maxlength="200" required><span class='popup__input-error' id='popup__input_description-error'></span>
+        <input name="Name" placeholder="ФИО путешественника" class="popup__input popup__input_name" value="" minlength="2" maxlength="40" required><span class="popup__input_type_error" id="popup__input_name"></span>
+        <input name="Description" placeholder="Увлечения путешественника" class="popup__input popup__input_description" value="" minlength="2" maxlength="200" required disabled><span class='popup__input_type_error' id='popup__input_description'></span>
         <button type="submit" class="popup__button-save">Сохранить</button>
     </form>
   </div>
@@ -75,7 +75,8 @@
   <p class="footer__copiryght">© 2020 Mesto Russia</p>
 </footer>
 
-<script src="./scripts/index.js"></script>
+<script src="./scripts/index.js" defer></script>
+<script src="./scripts/validate.js" defer></script>
 
 </body>
 </html>
