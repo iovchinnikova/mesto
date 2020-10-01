@@ -23,7 +23,7 @@
       <p class="profile__info-subtitle">Исследователь океана</p>
       <button type="button" class="profile__edit-button"></button>
     </div>
-      <button type="button" class="profile__add-button"></button>
+    <button type="button" class="profile__add-button"></button>
   </section>
 
 </main>
@@ -43,25 +43,33 @@
   <div class="popup__container">
     <button type="reset" class="popup__button popup__button-close popup__button-close_profile"></button>
     <h3 class="popup__title">Редактировать профиль</h3>
-    <form class="popup__form popup__form_profile" method="get" name="myForm" novalidate>
-        <input name="Name" placeholder="ФИО путешественника" class="popup__input popup__input_name" value="" minlength="2" maxlength="40" required><span class="popup__input_type_error" id="popup__input_name"></span>
-        <input name="Description" placeholder="Увлечения путешественника" class="popup__input popup__input_description" value="" minlength="2" maxlength="200" required><span class='popup__input_type_error' id='popup__input_description'></span>
-        <button type="submit" class="popup__button popup__button-save popup__button_disabled" disabled>Сохранить</button>
+    <form class="popup__form popup__form_profile" name="myForm" novalidate>
+      <input name="Name" id="popup__input_name" type="text" placeholder="ФИО путешественника" class="popup__input popup__input_name" value="" minlength="2"
+             maxlength="40" required>
+      <span class="popup__input-error" id="popup__input_name-error"></span>
+      <input name="Description" type="text" id='popup__input_description' placeholder="Увлечения путешественника" class="popup__input popup__input_description"
+             value="" minlength="2" maxlength="200" required>
+      <span class='popup__input-error' id='popup__input_description-error'></span>
+      <button type="submit" class="popup__button popup__button-save popup__button_disabled" disabled>Сохранить</button>
     </form>
   </div>
 </section>
 
-  <section class="popup popup__photo">
+<section class="popup popup__photo">
   <div class="popup__container">
     <button type="reset" class="popup__button popup__button-close popup__button-close_photo"></button>
     <h3 class="popup__title">Новое место</h3>
-    <form class="popup__form popup__form_add_card" method="get" name="myForm" novalidate>
-      <input name="Name" placeholder="Название" class="popup__input popup__input_place" value="Название места" minlength="2" maxlength="30" required><span class="popup__input_type_error" id="popup__input_place"></span>
-      <input name="Link" placeholder="Ссылка на картинку" class="popup__input popup__input_place-link" value="Ссылка" type="url" required><span class="popup__input_type_error" id="popup__input_place-link"></span>
+    <form class="popup__form popup__form_add_card" name="myForm" novalidate>
+      <input name="Name" type="text" id="popup__input_place" placeholder="Название" class="popup__input popup__input_place" value="Название места"
+             minlength="2" maxlength="30" required>
+      <span class="popup__input-error" id="popup__input_place-error"></span>
+      <input name="Link" id="popup__input_place-link" placeholder="Ссылка на картинку" class="popup__input popup__input_place-link" value="Ссылка"
+             type="url" required>
+      <span class="popup__input-error" id="popup__input_place-link-error"></span>
       <button type="submit" class="popup__button popup__button-save popup__button_disabled" disabled>Создать</button>
     </form>
   </div>
-  </section>
+</section>
 
 <section class="popup popup__images">
   <div class="popup__container popup__container_image">
@@ -75,8 +83,8 @@
   <p class="footer__copiryght">© 2020 Mesto Russia</p>
 </footer>
 
-<script src="./scripts/index.js" defer></script>
-<script src="./scripts/validate.js" defer></script>
+<script src="./scripts/index.js"></script>
+<script src="./scripts/validate.js"></script>
 
 </body>
 </html>
