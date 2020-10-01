@@ -1,13 +1,13 @@
 const showInputError = (formElement, inputElement, errorMessage) => {//обьявляем функцию, ккоторая показывает ошибку
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);//в формах находим нужный инпут в котором ошибка
-  inputElement.classList.add('popup__input_error');//инпуту добавляем класс с ошибкой подчеркивает нижнюю границу
+  inputElement.classList.add('popup__input_type_error');//инпуту добавляем класс с ошибкой подчеркивает нижнюю границу
   errorElement.textContent = errorMessage;//текстовое содержимое ошибки присваивает содержание из errorMessage (это чтото по умолчанию есть в JS я так поняла
   errorElement.classList.add('popup__input-error');// ошибка также присваивает класс для стилизации текстовой части ошибки
 };
 
 const hideInputError = (formElement, inputElement) => {//обьявляем функцию, которая скрывает ошибку
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`); // находим элемент ошибки
-  inputElement.classList.remove('popup__input_error'); // удаляем класс с ошибкой
+  inputElement.classList.remove('popup__input_type_error'); // удаляем класс с ошибкой
   errorElement.classList.remove('popup__input-error');
   errorElement.textContent = '';
 };
