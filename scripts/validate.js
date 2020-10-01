@@ -2,75 +2,75 @@ const popupForm = document.querySelector('.popup__form');
 const popupInput = popupForm.querySelector('.popup__input');
 // const popupError = popupForm.querySelector('.popup__input-error');
 
-const showInputError = (popupFormElement, popupInputElement, errorMessage) => {
-  const errorElement = popupFormElement.querySelector(popupInputElement.id);
-  popupInputElement.classList.add('popup__input_type_error');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
+const showInputError = (popupForm, popupInput, errorMessage) => {//обьявл]ем функцию обьявления ошибки
+  const errorElement = popupForm.querySelector('#${popupInput.id}-error');//в формах находим нужный класс и присваиваем его ошибке
+  popupInput.classList.add('popup__input_type_error');//инпуту присоединяем новыйй класс
+  errorElement.textContent = errorMessage;//текстовое содержимое ошибки присваивает содержание из errorMessage (это чтото по умолчанию есть в JS я так поняла
+  errorElement.classList.add('popup__input_type_error_active');// ошибка также присваивает класс и становится активной
 };
-showInputError(popupFormElement, popupInputElement);
 
-const hideInputError = (popupFormElement, popupInputElement) => {
-  const errorElement = popupFormElement.querySelector(popupInputElement.id);
-  popupInputElement.classList.remove('popup__input_type_error');
+const hideInputError = (popupForm, popupInput) => {//эта функция убирает сообщение об ошибке
+  const errorElement = popupForm.querySelector(popupInput.id);
+  popupInput.classList.remove('popup__input_type_error');
   errorElement.textContent = '';
-  errorElement.classList.remove('popup__input-error_active');
+  errorElement.classList.remove('popup__input_type_error_active');
 };
 
-const chekInputValidaty = (popupFormElement, popupInputElement) => {
-  if (!popupInputElement.validity.valid) {
-    showInputError(popupFormElement, popupInputElement, popupInput.validationMessage);
+const chekInputValidaty = (popupForm, popupInput) => {//функция проверки инпута на валидность
+  if (!popupInput.validity.valid) {//если инпут не валиден
+    showInputError(popupForm, popupInput, popupInput.validationMessage);//выполняется функция обьявления ошибки
   } else {
-    hideInputError(popupFormElement, popupInputElement);
+    hideInputError(popupForm, popupInput);//если валиден, то сообщения об ошибке не появляется
   }
 };
 
-const hasInvalidInput = (popupInputList) => {
-  return popupInputList.some((popupInputElement) => {
-    return !popupInputElement.validity.valid;
+const hasInvalidInput = (popupInputList) => {//эта функция проверит наличие невалидного  поля и сообщает можно ли разблокировать сабмит
+  return popupInputList.some((popupInput) => {//вернет валидное поле true
+    return !popupInput.validity.valid;//поле невалидное
   });
 };
 
-const toggleButtonState = (popupInputList, buttonElement) => {
-  if (hasInvalidInput(popupInputList)) {
-    buttonElement.setAttribute(disabled,true);
+const toggleButtonState = (popupInputList, buttonElement) => {//функция отключает и включает кнопку сабмит
+  if (hasInvalidInput(popupInputList)) {//ecли инпут ввлидный
+    buttonElement.setAttribute(disabled,true);//присоединит атрибут дисаблед
   } else {
-    buttonElement.removeAttribute(disabled);
+    buttonElement.removeAttribute(disabled);//иначе удалит атрибут дисаблед
   }
 };
 
-const setEventListeners = (popupFormElement) => {
-  const popupInputList = Array.from(popupFormElement.querySelectorAll('popup__input'));
-  const buttonElement = popupFormElement.querySelector('.popup__button-save');
+const setEventListeners = (popupForm) => {//фунцкия добавления обработчиков полей внутри формы
+  const popupInputList = Array.from(popupForm.querySelectorAll('popup__input'));//создается массив элементов полей методом Array.from
+  const buttonElement = popupForm.querySelector('.popup__button-save');//в формах найти кнопки
 
-  toggleButtonState (popupInputList, buttonElement);
+  toggleButtonState (popupInputList, buttonElement);//состояние кнопки при включении
 
-  popupInputList.forEach((popupInputElement) => {
-    popupInputElement.addEventListener('input', function () {
-      chekInputValidaty(popupFormElement, popupInputElement);
-      toggleButtonState (popupInputList, buttonElement);
+  popupInputList.forEach((popupInput) => {//в массиве popupInputList методом forEach перебираем элементы
+    popupInput.addEventListener('input', function () {// элементам добавить обработчик на введение данных input
+      chekInputValidaty(popupForm, popupInput);//и вызывать функцию проверки валидности полей
+      toggleButtonState (popupInputList, buttonElement);//вызывать функцию проверки состояния кнопки сабмит
     });
   });
 };
 
-const enableValidation = () => {
-  const popupFormList = Array.from(document.querySelectorAll('popup__form'));
-  popupFormList.forEach((popupFormElement) => {
-    popupFormElement.addEventListener('submit', (evt) =>{
-      evt.preventDefault();
+const enableValidation = () => {//функция добавления обработиков формам
+  // params.formSelector
+  const popupFormList = Array.from(document.querySelectorAll('popup__form'));//также как и в полях методом арайфром создаем массив форм
+  popupFormList.forEach((popupForm) => {//перебрать формы
+    popupForm.addEventListener('submit', (evt) =>{//добавить обработчик
+      evt.preventDefault();//отменить стандартное поведение сабмита
     });
-    setEventListeners(popupFormElement);
+    setEventListeners(popupForm);//для форм вызываем setEventListeners... ВСЕ!!!! СДАЮСЬ!!!!
   });
 };
-
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+//
+// enableValidation({
+//   formSelector: '.popup__form',
+//   inputSelector: '.popup__input',
+//   submitButtonSelector: '.popup__button',
+//   inactiveButtonClass: 'popup__button_disabled',
+//   inputErrorClass: 'popup__input_type_error',
+//   errorClass: 'popup__error_visible'
+// });
 
 // enableValidation();
 // // const fieldsetList =
