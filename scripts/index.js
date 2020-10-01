@@ -137,3 +137,4 @@ function onSubmitPopupFormAddCard(event) {
 
 popupFormAddCard.addEventListener('submit', onSubmitPopupFormAddCard);
 popupFormProfile.addEventListener('submit', onSubmitPopupForm);
+

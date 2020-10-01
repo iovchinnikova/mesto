@@ -1,12 +1,6 @@
 .popup_opened {
-  display: flex;
+  opacity: 1;
   visibility: visible;
-  opacity: 0;
-  transition: visibility 1s, opacity 0.8s linear;
+  transition: visibility 0s, opacity 0.5s;
 }
 
-/*.popup_opened:hover {*/
-/*  !*visibility: hidden;*!*/
-/*  opacity: 1;*/
-/*  transition-delay: 0s;*/
-/*}*/
