@@ -111,6 +111,7 @@ function handleClickOpenPopup(modal, element) {
 
 function closePopup(modal) {
   modal.classList.remove('popup_opened');
+  window.removeEventListener('keydown', closePopupHandleEscape);
 }
 
 function handleClickClosePopup(modal, element) {
@@ -138,8 +139,8 @@ popupList.forEach((popup) => {
 function closePopupHandleEscape(event) {
   if (event.key === 'Escape') {
     closePopup(openModal)
+    console.log('yfhgsdvf')
   }
-window.removeEventListener('keydown', closePopupHandleEscape);
 }
 
 
