@@ -50,6 +50,8 @@ function enableValidation(config) {
       buttonElement.removeAttribute('disabled', 'disabled');//иначе удалит атрибут дисаблед
     }
   }
+
+
     const popupFormList = Array.from(document.querySelectorAll(config.formSelector));//также как и в полях методом арайфром создаем массив форм
     popupFormList.forEach((popupForm) => {//перебрать формы
       popupForm.addEventListener('submit', (event) => {//добавить обработчик

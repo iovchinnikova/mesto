@@ -93,8 +93,12 @@ function addCard(newCardElement, start) {
   }
 }
 
+let openModal;
+
 function openPopup(modal) {
+  openModal=modal;
   modal.classList.add('popup_opened');
+  window.addEventListener('keydown', closePopupHandleEscape);
 }
 
 function handleClickOpenPopup(modal, element) {
@@ -116,6 +120,29 @@ function handleClickClosePopup(modal, element) {
 
   element.addEventListener('click', handleClosePopup);
 }
+
+const popupList = document.querySelectorAll('.popup');
+
+
+function closePopupOnclickOverlay(event) {
+  if (event.target === event.currentTarget) {
+    closePopup(event.currentTarget)
+  }
+}
+
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', closePopupOnclickOverlay);
+})
+
+
+function closePopupHandleEscape(event) {
+  if (event.key === 'Escape') {
+    closePopup(openModal)
+  }
+window.removeEventListener('keydown', closePopupHandleEscape);
+}
+
+
 
 handleClickClosePopup(popupAddPhoto, closeButtonPopupPhoto);
 handleClickClosePopup(popupProfile, buttonClosePopupProfile);
@@ -143,7 +170,7 @@ enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button_disabled',
+  inactiveButtonClass: 'popup__button_type_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error'
 });
