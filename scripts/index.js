@@ -1,3 +1,5 @@
+import Card from './Card.js';
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -48,21 +50,37 @@ const buttonClosePopupImages = document.querySelector('.popup__button-close_imag
 popupInputName.value = profileName.textContent;
 popupInputDescription.value = profileDescription.textContent;
 
-for (const initialCard of initialCards) {
-  addCard(createCard(initialCard.name, initialCard.link), false);
-}
 
-function createCard(name, link) {
-  const newCardElement = cardTemplate.cloneNode(true);
-  const elementPhoto = newCardElement.querySelector('.element__item');
+//Теперь цикл обойдёт массив messageList и для каждого его элемента:
+// создаст новый экземпляр класса Card,
+// подготовит карточку к публикации,
+//добавит новую карточку в DOM.
 
-  newCardElement.classList.remove('element__template');
-  newCardElement.querySelector('.element__figcation-title').textContent = name;
-  elementPhoto.setAttribute('src', link);
-  elementPhoto.setAttribute('alt', name);
+initialCards.forEach((item) => {
+  // Создадим экземпляр карточки
+  const card = new Card(item, '.element__template');
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
 
-  return newCardElement;
-}
+  // Добавляем в DOM append или prepend?
+  addCard(cardElement, false);
+});
+
+// for (const initialCard of initialCards) {
+//   addCard(createCard(initialCard.name, initialCard.link), false);
+// }
+
+// function createCard(name, link) {
+//   const newCardElement = cardTemplate.cloneNode(true);
+//   const elementPhoto = newCardElement.querySelector('.element__item');
+//
+//   newCardElement.classList.remove('element__template');
+//   newCardElement.querySelector('.element__figcation-title').textContent = name;
+//   elementPhoto.setAttribute('src', link);
+//   elementPhoto.setAttribute('alt', name);
+//
+//   return newCardElement;
+// }
 
 function addCard(newCardElement, start) {
   const elementPhoto = newCardElement.querySelector('.element__item');
