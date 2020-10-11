@@ -9,19 +9,20 @@ export default class Card {
   }
 
   _getTemplate() {
-    	const cardElement = document.querySelector(this._cardSelector).querySelector('.element').cloneNode(true);
-
-      return cardElement;
+    console.log('ужас11');
+    return document.querySelector(this._cardSelector).cloneNode(true).children[0];
+    console.log('ужас12');
     }
 
   _setEventListeners() {
-    newCardElement.querySelector('.element__figcation-like').addEventListener('click', () => {
-      this._handleMessageClick();
+    console.log('ужас13');
+    this._element.querySelector('.element__delete').addEventListener('click', () => {
+      this._deleteHandler();
     });
   }
 
-  _handleMessageClick() {
-    newCardElement.querySelector('.element__figcation-like').classList.toggle('element__figcation-like_active');
+  _deleteHandler() {
+    this._element.remove();
   }
 
 
@@ -36,18 +37,22 @@ export default class Card {
   // }
 
   generateCard() {
+    // this._element = this._getTemplate();
+    // this._element.querySelectorAll('.element__figcation-title').textContent = this._name;
+    // this._setEventListeners();
+    // return this._element;
     const newCardElement = document.querySelector(this._cardSelector).cloneNode(true);
     const elementPhoto = newCardElement.querySelector('.element__item');
-    // super._setEventListeners();
-    // this._element = super._getTemplate();
+    this._setEventListeners();
+    this._element = this._getTemplate();
     newCardElement.classList.remove('element__template');
     newCardElement.querySelector('.element__figcation-title').textContent = this._name;
     elementPhoto.setAttribute('src', this._link);
     elementPhoto.setAttribute('alt', this._name);
-    console.log('ужас9');
+    console.log('ужас14');
 
     return newCardElement;
-    console.log('ужас10');
+    console.log('ужас15');
   }
 
 

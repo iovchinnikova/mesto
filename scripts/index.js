@@ -56,14 +56,18 @@ popupInputDescription.value = profileDescription.textContent;
 // подготовит карточку к публикации,
 //добавит новую карточку в DOM.
 
+const prependCard = (cardElement) => {
+  initialCards.prepend(cardElement);
+}
+
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
-  const card = new Card(item, '.element__template');
+  const card = new Card(item, '.element__template', prependCard);
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
 
   // Добавляем в DOM append или prepend?
-  // document.querySelector('.elements').append(cardElement);
+  document.querySelector('.elements').append(cardElement);
   addCard(cardElement, false);
   // console.log('привет');
 });
