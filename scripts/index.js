@@ -1,4 +1,5 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const initialCards = [
   {
@@ -148,12 +149,21 @@ function onSubmitPopupFormAddCard(event) {
 popupFormAddCard.addEventListener('submit', onSubmitPopupFormAddCard);
 popupFormProfile.addEventListener('submit', onSubmitPopupForm);
 
-enableValidation({
+const validatorOfPopupAddPhoto = new FormValidator({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button-save',
   inactiveButtonClass: 'popup__button_type_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error'
-});
-
+}, popupAddPhoto);
+validatorOfPopupAddPhoto.enableValidation();
+const validatorOfPopupProfile = new FormValidator({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button_type_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error'
+}, popupProfile);
+validatorOfPopupProfile.enableValidation();
