@@ -49,7 +49,6 @@ const buttonClosePopupImages = document.querySelector('.popup__button-close_imag
 
 popupInputName.value = profileName.textContent;
 popupInputDescription.value = profileDescription.textContent;
-Card.openPopup = handleOpenImagePopupClick;
 
 //Теперь цикл обойдёт массив messageList и для каждого его элемента:
 // создаст новый экземпляр класса Card,
@@ -59,7 +58,7 @@ Card.openPopup = handleOpenImagePopupClick;
 
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
-  const card = new Card(item, '.element__template');
+  const card = new Card(item, '.element__template', handleOpenImagePopupClick);
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
   elements.append(cardElement);
@@ -139,7 +138,7 @@ function onSubmitPopupFormAddCard(event) {
   const card = new Card({
     name: popupInputPlace.value,
     link: popupInputPlaceLink.value
-  }, '.element__template');
+  }, '.element__template', handleOpenImagePopupClick);
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
   elements.prepend(cardElement);

@@ -1,8 +1,9 @@
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, openPopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._openPopup = openPopup;
   }
 
   // работают с разметкой - создает новый элемент для карточки на основе шаблона
@@ -39,7 +40,7 @@ export default class Card {
 
   // приватные методы для каждого обработчика: просмотр картинки в попап
   _viewHandler() {
-    Card.openPopup(this._link, this._name);
+    this._openPopup(this._link, this._name);
   }
 
   // метод, который возвращает полностью работоспособный и наполненный данными элемент карточки
