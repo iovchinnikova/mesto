@@ -1,6 +1,6 @@
 export default class Section {
   constructor({ items, renderer }, templateSelector) {
-    this._initialArray = items;
+    this._items = initialArray;
     this._renderer = renderer;
 
     this._container = document.querySelector(templateSelector);
