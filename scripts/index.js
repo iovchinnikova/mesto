@@ -2,6 +2,21 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 
+const cardsList = new Section({
+    data: initialCards,
+    renderer: (item) => {
+      const card = item.isOwner
+        ? new UserCard(item, '.card-template_type_user')
+        : new DefaultCard(item, '.card-template_type_default');
+
+      const cardElement = card.generateCard();
+
+      cardsList.setItem(cardElement);
+    },
+  },
+  cardListSection
+);
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -51,7 +66,7 @@ const buttonClosePopupImages = document.querySelector('.popup__button-close_imag
 popupInputName.value = profileName.textContent;
 popupInputDescription.value = profileDescription.textContent;
 
-//Теперь цикл обойдёт массив messageList и для каждого его элемента:
+//Теперь цикл обойдёт массив и для каждого его элемента:
 // создаст новый экземпляр класса Card,
 // подготовит карточку к публикации,
 //добавит новую карточку в DOM.

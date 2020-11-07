@@ -1,6 +1,6 @@
 export default class Section {
   constructor({ items, renderer }, templateSelector) {
-    this._items = initialArray;
+    this._renderedItems = items;
     this._renderer = renderer;
 
     this._container = document.querySelector(templateSelector);
@@ -13,8 +13,9 @@ export default class Section {
   }
 
   //публичный метод, который принимает DOM-элемент и добавляет его в контейнер.
-  addItem(item) {
-    this._container.append(item);
+  addItem(element) {
+    this._container.append(element);
   }
 }
+
 
