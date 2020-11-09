@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "0.0.1",
   "description": "",
-  "main": "index.html",
+  "main": "scr/index.html",
   "directories": {},
   "scripts": {
     "Start development": "gulp 'Start development'"
