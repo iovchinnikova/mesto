@@ -2,10 +2,11 @@
   "name": "mesto",
   "version": "0.0.1",
   "description": "",
-  "main": "scr/index.html",
+  "main": "src/index.html",
   "directories": {},
   "scripts": {
-    "Start development": "gulp 'Start development'"
+    "build": "rm -rf dist && webpack",
+    "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,23 @@
     "url": "https://github.com/iovchinnikova/mesto/issues"
   },
   "homepage": "https://github.com/iovchinnikova/mesto",
-  "dependencies": {},
+  "dependencies": {
+    "core-js": "^3.7.0"
+  },
   "devDependencies": {
-    "browser-sync": "latest",
-    "gulp": "latest",
-    "normalize.css": "latest"
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "autoprefixer": "^10.0.2",
+    "babel-loader": "^8.2.1",
+    "css-loader": "^5.0.1",
+    "cssnano": "^4.1.10",
+    "file-loader": "^6.2.0",
+    "html-loader": "^1.3.2",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.3.1",
+    "postcss-loader": "^4.0.4",
+    "webpack": "^4",
+    "webpack-cli": "latest",
+    "webpack-dev-server": "^3.11.0"
   }
 }
