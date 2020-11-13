@@ -9,7 +9,6 @@ export default class FormValidator {
 
   // проверяют валидность поля
   _checkValidityForm(inputElement) {
-    console.log('я в _checkValidityForm');
 
     if (inputElement.validity.valid) {
       const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); // находим элемент ошибки
@@ -27,7 +26,6 @@ export default class FormValidator {
 
   // изменяют состояние кнопки сабмита
   _changeStateSubmitButton(popupInputList, buttonElement) {
-    console.log('я в _changeStateSubmitButton');
     const hasInvalidInput = popupInputList.some((inputElement) => {//вернет валидное поле true
       return !inputElement.validity.valid;//поле невалидное
     });
@@ -43,7 +41,6 @@ export default class FormValidator {
 
   // устанавливают все обработчики
   _setEventListeners() {
-    console.log('я в _setEventListeners');
     const popupInputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));//создается массив элементов полей методом Array.from
     const buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);//в формах найти кнопки
 
@@ -64,5 +61,12 @@ export default class FormValidator {
     });
 
     this._setEventListeners();//для форм вызываем setEventListeners... ВСЕ!!!! СДАЮСЬ!!!!
+  }
+
+  reset() {
+    const popupInputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));//создается массив элементов полей методом Array.from
+    const buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);//в формах найти кнопки
+
+    this._changeStateSubmitButton(popupInputList, buttonElement);//вызывать функцию проверки состояния кнопки сабмит
   }
 }

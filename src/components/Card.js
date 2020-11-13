@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(data, templateSelector, openPopup) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._openPopup = openPopup;
+    this._openPopup = handleCardClick;
   }
 
   // работают с разметкой - создает новый элемент для карточки на основе шаблона

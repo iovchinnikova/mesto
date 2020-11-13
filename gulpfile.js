@@ -5,7 +5,7 @@ const browser_sync = require('browser-sync').create();
 
 function startDevelopment() {
   browser_sync.init({
-    server: "./"
+    server: "./src/"
   });
 
   const _onChangeFiles = (done) => {
