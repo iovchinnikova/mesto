@@ -9,18 +9,25 @@ export default class FormValidator {
 
   // проверяют валидность поля
   _checkValidityForm(inputElement) {
-
     if (inputElement.validity.valid) {
-      const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); // находим элемент ошибки
-      inputElement.classList.remove(this._config.inputErrorClass); // удаляем класс с ошибкой
-      errorElement.classList.remove(this._config.errorClass);
-      errorElement.textContent = '';
+      this._hideInputError(inputElement);
     } else {
-      const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);//в формах находим нужный инпут в котором ошибка
-      inputElement.classList.add(this._config.inputErrorClass);//инпуту добавляем класс с ошибкой подчеркивает нижнюю границу
-      errorElement.textContent = inputElement.validationMessage;//текстовое содержимое ошибки присваивает содержание из errorMessage (это чтото по умолчанию есть в JS я так поняла
-      errorElement.classList.add(this._config.errorClass);// ошибка также присваивает класс для стилизации текстовой части ошибки
+      this._showInputError(inputElement);
     }
+  }
+
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); // находим элемент ошибки
+    inputElement.classList.remove(this._config.inputErrorClass); // удаляем класс с ошибкой
+    errorElement.classList.remove(this._config.errorClass);
+    errorElement.textContent = '';
+  }
+
+  _showInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);//в формах находим нужный инпут в котором ошибка
+    inputElement.classList.add(this._config.inputErrorClass);//инпуту добавляем класс с ошибкой подчеркивает нижнюю границу
+    errorElement.textContent = inputElement.validationMessage;//текстовое содержимое ошибки присваивает содержание из errorMessage (это чтото по умолчанию есть в JS я так поняла
+    errorElement.classList.add(this._config.errorClass);// ошибка также присваивает класс для стилизации текстовой части ошибки
   }
 
 
