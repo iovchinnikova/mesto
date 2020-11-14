@@ -46,9 +46,10 @@ export default class Card {
   // метод, который возвращает полностью работоспособный и наполненный данными элемент карточки
   generateCard() {
     this._element = this._getTemplate();
+    const element__item = this._element.querySelector('.element__item');
     this._element.querySelector('.element__figcation-title').textContent = this._name;
-    this._element.querySelector('.element__item').setAttribute('src', this._link);
-    this._element.querySelector('.element__item').setAttribute('alt', this._name);
+    element__item.setAttribute('src', this._link);
+    element__item.setAttribute('alt', this._name);
     this._setEventListeners();
     return this._element;
   }
