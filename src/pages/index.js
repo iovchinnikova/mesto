@@ -64,22 +64,16 @@ const userInfo = new UserInfo({
   selectorName: '.profile__info-title',
   selectorInfo: '.profile__info-subtitle'
 });
-const validatorOfPopupAddPhoto = new FormValidator({
+const formClassConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button-save',
   inactiveButtonClass: 'popup__button_type_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error'
-}, popupAddPhoto);
-const validatorOfPopupProfile = new FormValidator({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button_type_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error'
-}, popupProfile);
+};
+const validatorOfPopupAddPhoto = new FormValidator(formClassConfig, popupAddPhoto);
+const validatorOfPopupProfile = new FormValidator(formClassConfig, popupProfile);
 
 
 validatorOfPopupAddPhoto.enableValidation();
