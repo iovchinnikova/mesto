@@ -33,9 +33,7 @@ export default class FormValidator {
 
   // изменяют состояние кнопки сабмита
   _changeStateSubmitButton(popupInputList, buttonElement) {
-    const hasInvalidInput = popupInputList.some((inputElement) => {//вернет валидное поле true
-      return !inputElement.validity.valid;//поле невалидное
-    });
+    const hasInvalidInput = this._checkInputsForm(popupInputList);
 
     if (hasInvalidInput) {//ecли инпут ввлидный
       buttonElement.classList.add(this._config.inactiveButtonClass);
@@ -44,6 +42,12 @@ export default class FormValidator {
       buttonElement.classList.remove(this._config.inactiveButtonClass);
       buttonElement.removeAttribute('disabled', 'disabled');//иначе удалит атрибут дисаблед
     }
+  }
+
+  _checkInputsForm(popupInputList) {
+    return popupInputList.some((inputElement) => {//вернет валидное поле true
+      return !inputElement.validity.valid;//поле невалидное
+    });
   }
 
   // устанавливают все обработчики
