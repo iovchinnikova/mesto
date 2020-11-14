@@ -40,13 +40,13 @@ const newImagePopup = new PopupWithImage('.popup__images');
 
 const cardsList = new Section({
     items: initialCards,
-    renderer: renderer,
+    renderer: renderItem,
   },
   '.elements'
 );
 cardsList.renderItems();
 
-function renderer(item) {
+function renderItem(item) {
   // Создадим экземпляр карточки
   const card = new Card(item, '.element__template', handleOpenImagePopupClick);
   // Создаём карточку и возвращаем наружу
@@ -116,7 +116,7 @@ function onSubmitPopupForm(inputValues) {
 
 function onSubmitPopupFormAddCard(inputValues) {
   // Создадим экземпляр карточки
-  cardsList.addItem(renderer({
+  cardsList.addItem(renderItem({
     name: inputValues.Name,
     link: inputValues.Link
   }));
