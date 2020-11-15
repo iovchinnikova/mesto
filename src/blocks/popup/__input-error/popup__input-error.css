@@ -10,3 +10,7 @@
   width: 358px;
   margin: 0 auto;
 }
+
+.popup__input-error:last-of-type {
+  margin-bottom: 50px;
+}

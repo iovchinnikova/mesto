@@ -5,65 +5,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-// Для каждого попапа создавайте свой экземпляр класса PopupWithForm.
-const newPopupProfile = new PopupWithForm('.popup__profile', onSubmitPopupForm);
-const newPopupAddPhoto = new PopupWithForm('.popup__photo', onSubmitPopupFormAddCard);
-const newImagePopup = new PopupWithImage('.popup__images');
-
-const cardsList = new Section({
-    items: initialCards,
-    renderer: renderItem,
-  },
-  '.elements'
-);
-cardsList.renderItems();
-
-function renderItem(item) {
-  // Создадим экземпляр карточки
-  const card = new Card(item, '.element__template', handleOpenImagePopupClick);
-  // Создаём карточку и возвращаем наружу
-  return card.generateCard();
-}
-
-const popupProfile = document.querySelector('.popup__profile')
-const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
-const popupInputName = document.querySelector('.popup__input_name');
-const popupInputDescription = document.querySelector('.popup__input_description');
-const popupAddPhoto = document.querySelector('.popup__photo');
-const buttonOpenPopupPhoto = document.querySelector('.profile__add-button');
-
-const userInfo = new UserInfo({
-  selectorName: '.profile__info-title',
-  selectorInfo: '.profile__info-subtitle'
-});
 const formClassConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -72,46 +15,138 @@ const formClassConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error'
 };
-const validatorOfPopupAddPhoto = new FormValidator(formClassConfig, popupAddPhoto);
-const validatorOfPopupProfile = new FormValidator(formClassConfig, popupProfile);
-
-
-validatorOfPopupAddPhoto.enableValidation();
-validatorOfPopupProfile.enableValidation();
-
-function handleOpenImagePopupClick(link, name) {
-  newImagePopup.open(link, name);
-}
-
-newPopupAddPhoto.setEventListeners();
-newPopupProfile.setEventListeners();
-newImagePopup.setEventListeners();
-
-buttonOpenPopupPhoto.addEventListener('click', () => {
-  validatorOfPopupAddPhoto.reset();
-  newPopupAddPhoto.open();
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-17',
+  headers: {
+    authorization: '3fbfd607-88cf-472b-859d-216e0633cd4f',
+    'Content-Type': 'application/json'
+  }
 });
 
-buttonOpenPopupProfile.addEventListener('click', () => {
-  const currentUserInfo = userInfo.getUserInfo();
-  popupInputName.value = currentUserInfo.name;
-  popupInputDescription.value = currentUserInfo.info;
-  validatorOfPopupProfile.reset();
-  newPopupProfile.open();
-});
+function handleSuccessInitialCards(initialCards, user) {
+  const cardsList = new Section({
+      items: initialCards,
+      renderer: renderItem,
+    },
+    '.elements'
+  );
+  // Для каждого попапа создавайте свой экземпляр класса PopupWithForm.
+  const newPopupAddPhoto = new PopupWithForm('.popup__photo', onSubmitPopupFormAddCard, 'Добавление...');
+  const newImagePopup = new PopupWithImage('.popup__images');
+  const popupAddPhoto = document.querySelector('.popup__photo');
+  const buttonOpenPopupPhoto = document.querySelector('.profile__add-button');
+  const validatorOfPopupAddPhoto = new FormValidator(formClassConfig, popupAddPhoto);
 
+  function renderItem(item) {
+    // Создадим экземпляр карточки
+    const card = new Card(item, '.element__template', handleOpenImagePopupClick, api, user._id);
+    // Создаём карточку и возвращаем наружу
+    return card.generateCard();
+  }
 
-function onSubmitPopupForm(inputValues) {
-  userInfo.setUserInfo({
-    name: inputValues.Name,
-    info: inputValues.Description
+  function handleOpenImagePopupClick(link, name) {
+    newImagePopup.open(link, name);
+  }
+
+  function onSubmitPopupFormAddCard(inputValues, onServerSuccess) {
+    api.addingANewCard({
+      name: inputValues.Name,
+      link: inputValues.Link
+    }).then((result) => {
+      // Создадим экземпляр карточки
+      cardsList.addItem(renderItem(result));
+      onServerSuccess();
+    })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+
+  cardsList.renderItems();
+  validatorOfPopupAddPhoto.enableValidation();
+  newPopupAddPhoto.setEventListeners();
+  newImagePopup.setEventListeners();
+  buttonOpenPopupPhoto.addEventListener('click', () => {
+    validatorOfPopupAddPhoto.reset();
+    newPopupAddPhoto.open();
   });
 }
 
-function onSubmitPopupFormAddCard(inputValues) {
-  // Создадим экземпляр карточки
-  cardsList.addItem(renderItem({
-    name: inputValues.Name,
-    link: inputValues.Link
-  }));
+function handleSuccessLoadingUserInformationFromTheServer(user) {
+  const newPopupProfile = new PopupWithForm('.popup__profile', onSubmitPopupForm, 'Сохранение...');
+  const newPopupAvatar = new PopupWithForm('.popup__avatar', onSubmitPopupAvatar, 'Сохранение...');
+  const buttonAvatar = document.querySelector('.profile__avatar');
+  const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
+  const popupInputName = document.querySelector('.popup__input_name');
+  const popupInputDescription = document.querySelector('.popup__input_description');
+  const userInfo = new UserInfo({
+    selectorName: '.profile__info-title',
+    selectorInfo: '.profile__info-subtitle',
+    selectorAvatar: '.profile__avatar'
+  });
+  const popupProfile = document.querySelector('.popup__profile')
+  const popupAvatar = document.querySelector('.popup__avatar')
+  const validatorOfPopupProfile = new FormValidator(formClassConfig, popupProfile);
+  const validatorOfPopupAvatar = new FormValidator(formClassConfig, popupAvatar);
+
+  function onSubmitPopupForm(inputValues, onServerSuccess) {
+    api.profileEditing({
+      name: inputValues.Name,
+      about: inputValues.Description
+    }).then((result) => {
+      userInfo.setUserInfo(result);
+      onServerSuccess();
+    })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+
+  function onSubmitPopupAvatar(inputValues, onServerSuccess) {
+    api.updatingUserAvatar(inputValues.avatar).then((result) => {
+      userInfo.setAvatar(result.avatar);
+      onServerSuccess();
+    })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+
+
+  userInfo.setUserInfo(user);
+  userInfo.setAvatar(user.avatar);
+  newPopupProfile.setEventListeners();
+  newPopupAvatar.setEventListeners();
+  validatorOfPopupProfile.enableValidation();
+  validatorOfPopupAvatar.enableValidation();
+  buttonOpenPopupProfile.addEventListener('click', () => {
+    const currentUserInfo = userInfo.getUserInfo();
+    popupInputName.value = currentUserInfo.name;
+    popupInputDescription.value = currentUserInfo.about;
+    validatorOfPopupProfile.reset();
+    newPopupProfile.open();
+  });
+
+  buttonAvatar.addEventListener('click', () => {
+    newPopupAvatar.open();
+  });
 }
+
+api.loadingUserInformationFromTheServer()
+  .then((user) => {
+    handleSuccessLoadingUserInformationFromTheServer(user);
+
+    api.getInitialCards()
+      .then((initialCards) => {
+        handleSuccessInitialCards(initialCards, user);
+        // обрабатываем результат
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+
+    // обрабатываем результат
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  });

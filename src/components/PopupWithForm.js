@@ -9,18 +9,21 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   // Кроме селектора попапа принимает в конструктор колбэк сабмита формы.
-  constructor(popupSelector, onFormSubmit) {
+  constructor(popupSelector, onFormSubmit, buttonTitle) {
     super(popupSelector);
     this._onFormSubmit = onFormSubmit;
     this._form = this._modal.querySelector('form');
+    this._buttonTitle = buttonTitle;
   }
 
   // Содержит приватный метод _getInputValues,
   // который собирает данные всех полей формы.
   _getInputValues() {
     let object = {};
-    let formData =  new FormData(this._form);
-    formData.forEach((value, key) => {object[key] = value});
+    let formData = new FormData(this._form);
+    formData.forEach((value, key) => {
+      object[key] = value
+    });
     return object;
   }
 
@@ -32,10 +35,14 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
 
     this._form.addEventListener('submit', (event) => {
+      const button = this._form.querySelector('button[type="submit"]');
+      const buttonTitle = button.textContent;
       event.preventDefault();
-
-      this._onFormSubmit(this._getInputValues());
-      this.close();
+      button.textContent = this._buttonTitle;
+      this._onFormSubmit(this._getInputValues(), () => {
+        button.textContent = buttonTitle;
+        this.close();
+      });
     });
   }
 
