@@ -6,6 +6,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import PopupConfirmDeleteCard from "../components/PopupConfirmDeleteCard.js";
 
 const formClassConfig = {
   formSelector: '.popup__form',
@@ -22,6 +23,9 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+const confirmDeletePopup = new PopupConfirmDeleteCard('.popup__confirm');
+confirmDeletePopup.setEventListeners();
 
 function handleSuccessInitialCards(initialCards, user) {
   const cardsList = new Section({
@@ -45,7 +49,7 @@ function handleSuccessInitialCards(initialCards, user) {
       return api.removingTheLike(cardId);
     }, (cardId) => {
       return api.likeSetting(cardId);
-    });
+    }, confirmDeletePopup);
     // Создаём карточку и возвращаем наружу
     return card.generateCard();
   }

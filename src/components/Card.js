@@ -1,7 +1,5 @@
-import PopupWithForm from "./PopupWithForm";
-
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, userId, deletingACard, removingTheLike, likeSetting) {
+  constructor(data, templateSelector, handleCardClick, userId, deletingACard, removingTheLike, likeSetting, popupConfirmDeleteCard) {
     this._userId = userId;
     this._owner = data.owner;
     this._id = data._id;
@@ -13,6 +11,7 @@ export default class Card {
     this._deletingACard = deletingACard;
     this._removingTheLike = removingTheLike;
     this._likeSetting = likeSetting;
+    this._popupConfirmDeleteCard = popupConfirmDeleteCard;
   }
 
   // работают с разметкой - создает новый элемент для карточки на основе шаблона
@@ -43,7 +42,7 @@ export default class Card {
 
   // приватные методы для каждого обработчика: удаление карточки
   _deleteHandler() {
-    const confirmDeletePopup = new PopupWithForm('.popup__confirm', (inputValues, onServerSuccess) => {
+    this._popupConfirmDeleteCard.open((inputValues, onServerSuccess) => {
       this._deletingACard(this._id)
         .then(() => {
           this._element.remove();
@@ -52,10 +51,7 @@ export default class Card {
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
         });
-    }, 'Удаление...');
-
-    confirmDeletePopup.open();
-    confirmDeletePopup.setEventListeners();
+    });
   }
 
 // приватные методы для каждого обработчика: клик на лайк
