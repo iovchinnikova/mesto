@@ -42,7 +42,7 @@ export default class Card {
 
   // приватные методы для каждого обработчика: удаление карточки
   _deleteHandler() {
-    this._popupConfirmDeleteCard.open((inputValues, onServerSuccess) => {
+    this._popupConfirmDeleteCard.open((inputValues, onServerSuccess, onFinally) => {
       this._deletingACard(this._id)
         .then(() => {
           this._element.remove();
@@ -50,7 +50,11 @@ export default class Card {
         })
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
-        });
+        })
+        .finally(() => {
+          onFinally();
+        })
+      ;
     });
   }
 

@@ -58,7 +58,7 @@ function handleSuccessInitialCards(initialCards, user) {
     newImagePopup.open(link, name);
   }
 
-  function onSubmitPopupFormAddCard(inputValues, onServerSuccess) {
+  function onSubmitPopupFormAddCard(inputValues, onServerSuccess, onFinally) {
     api.addingANewCard(inputValues).then((result) => {
       // Создадим экземпляр карточки
       cardsList.addItem(renderItem(result));
@@ -66,7 +66,11 @@ function handleSuccessInitialCards(initialCards, user) {
     })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
-      });
+      })
+      .finally(() => {
+        onFinally();
+      })
+    ;
   }
 
   cardsList.renderItems();
@@ -96,7 +100,7 @@ function handleSuccessLoadingUserInformationFromTheServer(user) {
   const validatorOfPopupProfile = new FormValidator(formClassConfig, popupProfile);
   const validatorOfPopupAvatar = new FormValidator(formClassConfig, popupAvatar);
 
-  function onSubmitPopupForm(inputValues, onServerSuccess) {
+  function onSubmitPopupForm(inputValues, onServerSuccess, onFinally) {
     api.profileEditing({
       name: inputValues.Name,
       about: inputValues.Description
@@ -106,16 +110,23 @@ function handleSuccessLoadingUserInformationFromTheServer(user) {
     })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
-      });
+      })
+      .finally(() => {
+        onFinally();
+      })
+    ;
   }
 
-  function onSubmitPopupAvatar(inputValues, onServerSuccess) {
+  function onSubmitPopupAvatar(inputValues, onServerSuccess, onFinally) {
     api.updatingUserAvatar(inputValues.avatar).then((result) => {
       userInfo.setAvatar(result.avatar);
       onServerSuccess();
     })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
+      })
+      .finally(() => {
+        onFinally();
       });
   }
 
