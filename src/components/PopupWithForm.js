@@ -20,7 +20,7 @@ export default class PopupWithForm extends Popup {
   // который собирает данные всех полей формы.
   _getInputValues() {
     const object = {};
-    let formData = new FormData(this._form);
+    const formData = new FormData(this._form);
     formData.forEach((value, key) => {
       object[key] = value
     });
