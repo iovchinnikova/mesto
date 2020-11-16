@@ -1,7 +1,7 @@
 import PopupWithForm from "./PopupWithForm";
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, api, userId) {
+  constructor(data, templateSelector, handleCardClick, userId, deletingACard, removingTheLike, likeSetting) {
     this._userId = userId;
     this._owner = data.owner;
     this._id = data._id;
@@ -10,7 +10,9 @@ export default class Card {
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._openPopup = handleCardClick;
-    this._api = api;
+    this._deletingACard = deletingACard;
+    this._removingTheLike = removingTheLike;
+    this._likeSetting = likeSetting;
   }
 
   // работают с разметкой - создает новый элемент для карточки на основе шаблона
@@ -42,7 +44,7 @@ export default class Card {
   // приватные методы для каждого обработчика: удаление карточки
   _deleteHandler() {
     const confirmDeletePopup = new PopupWithForm('.popup__confirm', (inputValues, onServerSuccess) => {
-      this._api.deletingACard(this._id)
+      this._deletingACard(this._id)
         .then(() => {
           this._element.remove();
           onServerSuccess();
@@ -59,7 +61,7 @@ export default class Card {
 // приватные методы для каждого обработчика: клик на лайк
   _likeHandler() {
     if (this._elementLike.classList.contains('element__figcation-like_active')) {
-      this._api.removingTheLike(this._id)
+      this._removingTheLike(this._id)
         .then((newCard) => {
           this._serverLikeHandler(newCard);
         })
@@ -67,7 +69,7 @@ export default class Card {
           console.log(err); // выведем ошибку в консоль
         });
     } else {
-      this._api.likeSetting(this._id)
+      this._likeSetting(this._id)
         .then((newCard) => {
           this._serverLikeHandler(newCard);
         })

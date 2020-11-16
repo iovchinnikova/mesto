@@ -39,7 +39,13 @@ function handleSuccessInitialCards(initialCards, user) {
 
   function renderItem(item) {
     // Создадим экземпляр карточки
-    const card = new Card(item, '.element__template', handleOpenImagePopupClick, api, user._id);
+    const card = new Card(item, '.element__template', handleOpenImagePopupClick, user._id, (cardId) => {
+      return api.deletingACard(cardId);
+    }, (cardId) => {
+      return api.removingTheLike(cardId);
+    }, (cardId) => {
+      return api.likeSetting(cardId);
+    });
     // Создаём карточку и возвращаем наружу
     return card.generateCard();
   }
