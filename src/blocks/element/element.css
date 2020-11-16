@@ -1,6 +1,8 @@
 @import url('__item/element__item.css');
 @import url('__figcation/element__figcation.css');
 @import url('__figcation-like/element__figcation-like.css');
+@import url('__figcation-like-count/element__figcation-like-count.css');
+@import url('__figcation-like-and-count/element__figcation-like-and-count.css');
 @import url('__figcation-title/element__figcation-title.css');
 @import url('__delete/element__delete.css');
 @import url('__figcation-like/_active/element__figcation-like_active.css');
