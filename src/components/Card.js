@@ -107,10 +107,10 @@ export default class Card {
     this._element = this._getTemplate();
     this._elementLike = this._element.querySelector('.element__figcation-like');
     this._elementLikeCount = this._element.querySelector('.element__figcation-like-count');
-    const element__item = this._element.querySelector('.element__item');
+    const elementItem = this._element.querySelector('.element__item');
     this._element.querySelector('.element__figcation-title').textContent = this._name;
-    element__item.setAttribute('src', this._link);
-    element__item.setAttribute('alt', this._name);
+    elementItem.setAttribute('src', this._link);
+    elementItem.setAttribute('alt', this._name);
     this._setEventListeners();
     this._renderLike();
     this._renderLikeCount();
