@@ -63,10 +63,6 @@ export default class FormValidator {
 
   // публичный метод, который включает валидацию формы
   enableValidation() {
-    this._formElement.addEventListener('submit', (event) => {//добавить обработчик
-      event.preventDefault();//отменить стандартное поведение сабмита
-    });
-
     this._setEventListeners();//для форм вызываем setEventListeners... ВСЕ!!!! СДАЮСЬ!!!!
   }
 

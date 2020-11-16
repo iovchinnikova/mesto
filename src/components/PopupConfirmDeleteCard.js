@@ -8,5 +8,6 @@ export default class PopupConfirmDeleteCard extends PopupWithForm {
 
   open(onFormSubmit) {
     this._onFormSubmit = onFormSubmit;
+    super.open();
   }
 }
