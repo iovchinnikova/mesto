@@ -59,10 +59,7 @@ function handleSuccessInitialCards(initialCards, user) {
   }
 
   function onSubmitPopupFormAddCard(inputValues, onServerSuccess) {
-    api.addingANewCard({
-      name: inputValues.Name,
-      link: inputValues.Link
-    }).then((result) => {
+    api.addingANewCard(inputValues).then((result) => {
       // Создадим экземпляр карточки
       cardsList.addItem(renderItem(result));
       onServerSuccess();
